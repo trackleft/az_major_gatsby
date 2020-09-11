@@ -13,6 +13,9 @@ module.exports = {
         apiBase: `jsonapi`, // optional, defaults to `jsonapi`
       },
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+
   ],
 }
 
