@@ -1,15 +1,15 @@
 import React from "react"
 import {graphql } from "gatsby"
 import Container from "../components/container"
-//import Img from "gatsby-image"
+import Img from "gatsby-image"
 
 function Image(props) {
   const hasImage = props.src;
   if (hasImage) {
-    const src = 'https://gatsby-majorsdata.pantheonsite.io' + props.src.relationships.field_media_image.uri.url;
+    const src = props.src.relationships.field_media_image.localFile.childImageSharp.fluid;
     const alt = props.src.field_media_image.alt;
     const title = props.src.field_media_image.title;
-    return <img title={title} alt={alt} src={src} />;
+    return <Img title={title} alt={alt} fluid={src} />;
   }
   return null;
 }
@@ -41,6 +41,13 @@ export const query = graphql`
             field_az_media {
               relationships {
                 field_media_image {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 740, maxHeight: 555) {
+                        ...GatsbyImageSharpFluid
+                      }
+                    }
+                  }
                   uri {
                     url
                   }
